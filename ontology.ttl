@@ -1,0 +1,2227 @@
+@prefix : <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#> .
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9> rdf:type owl:Ontology ;
+                                                                           <http://purl.org/dc/elements/1.1/creator> "Cristina Almansa" ;
+                                                                           <http://purl.org/dc/elements/1.1/title> "Tourism Ontology" ;
+                                                                           rdfs:comment "Ontology about tourism resources in Spanish cities." ;
+                                                                           rdfs:label "Tourism Ontology" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#sameAs
+owl:sameAs rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#containsEntity
+:containsEntity rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isLocatedIn ;
+                rdfs:domain :City ;
+                rdfs:range [ rdf:type owl:Class ;
+                             owl:unionOf ( :Attraction
+                                           :Event
+                                           :Hotel
+                                           :Restaurant
+                                           :Transport
+                                         )
+                           ] ;
+                rdfs:comment "Represents the inverse relationship of isLocatedIn, indicating that a city contains a given entity." ;
+                rdfs:label "containsEntity" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#isLocatedIn
+:isLocatedIn rdf:type owl:ObjectProperty ;
+             rdfs:domain [ rdf:type owl:Class ;
+                           owl:unionOf ( :Attraction
+                                         :Event
+                                         :Hotel
+                                         :Restaurant
+                                         :Transport
+                                       )
+                         ] ;
+             rdfs:range :City ;
+             rdfs:comment "Links an entity such as a hotel, event, attraction, transport or restaurant to the city where it is located." ;
+             rdfs:label "isLocatedIn" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#attractionName
+:attractionName rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Attraction ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The name of the tourist attraction." ;
+                rdfs:label "attractionName" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#attractionRating
+:attractionRating rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Attraction ;
+                  rdfs:range xsd:decimal ;
+                  rdfs:comment "A numerical rating that reflects visitor satisfaction or popularity." ;
+                  rdfs:label "attractionRating" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#attractionType
+:attractionType rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Attraction ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The category or classification of the attraction, such as park, monument or museum." ;
+                rdfs:label "attractionType" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#averageCost
+:averageCost rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Transport ;
+             rdfs:range xsd:decimal ;
+             rdfs:comment "The average cost of using the transport service, expressed in standard currency." ;
+             rdfs:label "averageCost" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#averagePrice
+:averagePrice rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Restaurant ;
+              rdfs:range xsd:decimal ;
+              rdfs:comment "The average cost of a meal per person, expressed in standard currency." ;
+              rdfs:label "averagePrice" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#cityName
+:cityName rdf:type owl:DatatypeProperty ;
+          rdfs:domain :City ;
+          rdfs:range xsd:string ;
+          rdfs:comment "The official name of the city." ;
+          rdfs:label "cityName" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#companyName
+:companyName rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Transport ;
+             rdfs:range xsd:string ;
+             rdfs:comment "The name of the company that provides the transport service." ;
+             rdfs:label "companyName" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#cuisineType
+:cuisineType rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Restaurant ;
+             rdfs:range xsd:string ;
+             rdfs:comment "The type of cuisine served, such as Japanese, Italian or Mexican." ;
+             rdfs:label "cuisineType" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#eventDate
+:eventDate rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Event ;
+           rdfs:range xsd:date ;
+           rdfs:comment "The date when the event takes place." ;
+           rdfs:label "eventDate" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#eventName
+:eventName rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Event ;
+           rdfs:range xsd:string ;
+           rdfs:comment "The name or title of the event." ;
+           rdfs:label "eventName" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#eventType
+:eventType rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Event ;
+           rdfs:range xsd:string ;
+           rdfs:comment "A textual classification of the event, such as music, cultural or sports." ;
+           rdfs:label "eventType" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#hotelName
+:hotelName rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Hotel ;
+           rdfs:range xsd:string ;
+           rdfs:comment "The name of the hotel." ;
+           rdfs:label "hotelName" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#hotelRating
+:hotelRating rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Hotel ;
+             rdfs:range xsd:decimal ;
+             rdfs:comment "Average rating based on user reviews or aggregators." ;
+             rdfs:label "hotelRating" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#hotelStars
+:hotelStars rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Hotel ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "The hotel's star rating, typically from 1 to 5." ;
+            rdfs:label "hotelStars" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#hotelType
+:hotelType rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Hotel ;
+           rdfs:range xsd:string ;
+           rdfs:comment "A textual classification of the hotel (e.g., luxury, beach, rural)." ;
+           rdfs:label "hotelType" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#location
+:location rdf:type owl:DatatypeProperty ;
+          rdfs:domain :City ;
+          rdfs:range xsd:string ;
+          rdfs:comment "The geographical coordinates of the city, typically latitude and longitude." ;
+          rdfs:label "location" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#pricePerNight
+:pricePerNight rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Hotel ;
+               rdfs:range xsd:integer ;
+               rdfs:comment "Average price per night in standard currency." ;
+               rdfs:label "pricePerNight" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#restaurantName
+:restaurantName rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Restaurant ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The name of the restaurant." ;
+                rdfs:label "restaurantName" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#restaurantRating
+:restaurantRating rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Restaurant ;
+                  rdfs:range xsd:decimal ;
+                  rdfs:comment "A numerical rating that reflects the overall customer satisfaction." ;
+                  rdfs:label "restaurantRating" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#transportType
+:transportType rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Transport ;
+               rdfs:range xsd:string ;
+               rdfs:comment "The mode of transport, such as metro, taxi, tram, bus or public bicycle." ;
+               rdfs:label "transportType" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#AndalusianRestaurant
+:AndalusianRestaurant rdf:type owl:Class ;
+                      rdfs:subClassOf :Restaurant ;
+                      rdfs:comment "A restaurant focused on Andalusian cuisine, known for tapas, fried fish, gazpacho and olive oil-rich dishes." ;
+                      rdfs:label "AndalusianRestaurant" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Attraction
+:Attraction rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :attractionName ;
+                              owl:someValuesFrom xsd:string
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :attractionRating ;
+                              owl:someValuesFrom xsd:decimal
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :attractionType ;
+                              owl:someValuesFrom xsd:string
+                            ] ;
+            owl:disjointWith owl:Thing .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Beach
+:Beach rdf:type owl:Class ;
+       rdfs:subClassOf :Attraction .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#BeachHotel
+:BeachHotel rdf:type owl:Class ;
+            rdfs:subClassOf :Hotel ;
+            rdfs:comment "A hotel located near the coast or on the beachfront, designed for travelers seeking seaside vacations." ;
+            rdfs:label "BeachHotel" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Bus
+:Bus rdf:type owl:Class ;
+     rdfs:subClassOf :Transport .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#BusinessHotel
+:BusinessHotel rdf:type owl:Class ;
+               rdfs:subClassOf :Hotel ;
+               rdfs:comment "A hotel that caters primarily to business travelers, offering facilities like meeting rooms, Wi-Fi and workspaces." ;
+               rdfs:label "BusinessHotel" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :cityName ;
+                        owl:someValuesFrom xsd:string
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :location ;
+                        owl:someValuesFrom xsd:string
+                      ] ;
+      owl:disjointWith owl:Thing .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Cultural
+:Cultural rdf:type owl:Class ;
+          rdfs:subClassOf :Attraction ;
+          rdfs:comment "A place or activity that reflects the traditions, arts or heritage of a community or region." ;
+          rdfs:label "Cultural" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CulturalEvent
+:CulturalEvent rdf:type owl:Class ;
+               rdfs:subClassOf :Event ;
+               rdfs:comment "An event focused on artistic or cultural expressions such as theater, dance, exhibitions or local traditions." ;
+               rdfs:label "CulturalEvent" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Event
+:Event rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :eventDate ;
+                         owl:someValuesFrom xsd:date
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :eventName ;
+                         owl:someValuesFrom xsd:string
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :eventType ;
+                         owl:someValuesFrom xsd:string
+                       ] ;
+       owl:disjointWith owl:Thing .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#FoodEvent
+:FoodEvent rdf:type owl:Class ;
+           rdfs:subClassOf :Event ;
+           rdfs:comment "An event centered around gastronomy, including food festivals, tastings or culinary exhibitions." ;
+           rdfs:label "FoodEvent" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Hotel
+:Hotel rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :hotelName ;
+                         owl:someValuesFrom xsd:string
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hotelRating ;
+                         owl:someValuesFrom xsd:decimal
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :pricePerNight ;
+                         owl:someValuesFrom xsd:integer
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hotelStars ;
+                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onDataRange xsd:integer
+                       ] ;
+       owl:disjointWith owl:Thing .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#ItalianRestaurant
+:ItalianRestaurant rdf:type owl:Class ;
+                   rdfs:subClassOf :Restaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#JapaneseRestaurant
+:JapaneseRestaurant rdf:type owl:Class ;
+                    rdfs:subClassOf :Restaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#LuxuryHotel
+:LuxuryHotel rdf:type owl:Class ;
+             rdfs:subClassOf :Hotel ;
+             rdfs:comment "A high-end hotel offering superior quality services, premium amenities, and high star ratings." ;
+             rdfs:label "LuxuryHotel" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MediterraneanRestaurant
+:MediterraneanRestaurant rdf:type owl:Class ;
+                         rdfs:subClassOf :Restaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Metro
+:Metro rdf:type owl:Class ;
+       rdfs:subClassOf :Transport ;
+       rdfs:comment "An urban underground rail transit system used for fast and frequent travel within cities." ;
+       rdfs:label "Metro" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MexicanRestaurant
+:MexicanRestaurant rdf:type owl:Class ;
+                   rdfs:subClassOf :Restaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Monument
+:Monument rdf:type owl:Class ;
+          rdfs:subClassOf :Attraction .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Museum
+:Museum rdf:type owl:Class ;
+        rdfs:subClassOf :Attraction .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MusicEvent
+:MusicEvent rdf:type owl:Class ;
+            rdfs:subClassOf :Event ;
+            rdfs:comment "An event involving live or recorded music performances, such as concerts, festivals or recitals." ;
+            rdfs:label "MusicEvent" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Park
+:Park rdf:type owl:Class ;
+      rdfs:subClassOf :Attraction .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#PublicBicycle
+:PublicBicycle rdf:type owl:Class ;
+               rdfs:subClassOf :Transport .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Restaurant
+:Restaurant rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :averageCost ;
+                              owl:someValuesFrom xsd:decimal
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :cuisineType ;
+                              owl:someValuesFrom xsd:string
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :restaurantName ;
+                              owl:someValuesFrom xsd:string
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :restaurantRating ;
+                              owl:someValuesFrom xsd:decimal
+                            ] ;
+            owl:disjointWith owl:Thing .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#RuralHotel
+:RuralHotel rdf:type owl:Class ;
+            rdfs:subClassOf :Hotel ;
+            rdfs:comment "A hotel situated in rural or countryside areas, offering a peaceful environment often connected with nature tourism." ;
+            rdfs:label "RuralHotel" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#SportEvent
+:SportEvent rdf:type owl:Class ;
+            rdfs:subClassOf :Event ;
+            rdfs:comment "A competitive or recreational event related to physical activities or sports, such as matches or tournaments." ;
+            rdfs:label "SportEvent" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Taxi
+:Taxi rdf:type owl:Class ;
+      rdfs:subClassOf :Transport .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#TechEvent
+:TechEvent rdf:type owl:Class ;
+           rdfs:subClassOf :Event ;
+           rdfs:comment "An event related to technology, innovation or digital culture, including conferences, expos or hackathons." ;
+           rdfs:label "TechEvent" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#TouristHotel
+:TouristHotel rdf:type owl:Class ;
+              rdfs:subClassOf :Hotel ;
+              rdfs:comment "A hotel designed for general tourists, typically offering standard services and located in popular travel destinations." ;
+              rdfs:label "TouristHotel" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Tram
+:Tram rdf:type owl:Class ;
+      rdfs:subClassOf :Transport .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Transport
+:Transport rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :transportType ;
+                             owl:someValuesFrom xsd:string
+                           ] ;
+           owl:disjointWith owl:Thing .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://dbpedia.org/resource/Barcelona
+<http://dbpedia.org/resource/Barcelona> rdf:type owl:NamedIndividual ;
+                                        owl:sameAs :Barcelona .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Barcelona
+
+###  http://dbpedia.org/resource/Beach
+<http://dbpedia.org/resource/Beach> rdf:type owl:NamedIndividual ;
+                                    owl:sameAs :Beach .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Beach
+:Beach rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Bicycle_sharing_system
+<http://dbpedia.org/resource/Bicycle_sharing_system> rdf:type owl:NamedIndividual ;
+                                                     owl:sameAs :PublicBicycle .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#PublicBicycle
+:PublicBicycle rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Bilbao
+<http://dbpedia.org/resource/Bilbao> rdf:type owl:NamedIndividual ;
+                                     owl:sameAs :Bilbao .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Bilbao
+
+###  http://dbpedia.org/resource/Bus
+<http://dbpedia.org/resource/Bus> rdf:type owl:NamedIndividual ;
+                                  owl:sameAs :Bus .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Bus
+:Bus rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/City
+<http://dbpedia.org/resource/City> rdf:type owl:NamedIndividual ;
+                                   owl:sameAs :City .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#City
+:City rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Cádiz
+<http://dbpedia.org/resource/Cádiz> rdf:type owl:NamedIndividual ;
+                                    owl:sameAs :Cádiz .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Cádiz
+
+###  http://dbpedia.org/resource/Event
+<http://dbpedia.org/resource/Event> rdf:type owl:NamedIndividual ;
+                                    owl:sameAs :Event .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Event
+:Event rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Hotel
+<http://dbpedia.org/resource/Hotel> rdf:type owl:NamedIndividual ;
+                                    owl:sameAs :Hotel .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Hotel
+:Hotel rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Italian_cuisine
+<http://dbpedia.org/resource/Italian_cuisine> rdf:type owl:NamedIndividual ;
+                                              owl:sameAs :ItalianRestaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#ItalianRestaurant
+:ItalianRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Japanese_cuisine
+<http://dbpedia.org/resource/Japanese_cuisine> rdf:type owl:NamedIndividual ;
+                                               owl:sameAs :JapaneseRestaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#JapaneseRestaurant
+:JapaneseRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Madrid
+<http://dbpedia.org/resource/Madrid> rdf:type owl:NamedIndividual ;
+                                     owl:sameAs :Madrid .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Madrid
+
+###  http://dbpedia.org/resource/Mediterranean_cuisine
+<http://dbpedia.org/resource/Mediterranean_cuisine> rdf:type owl:NamedIndividual ;
+                                                    owl:sameAs :MediterraneanRestaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MediterraneanRestaurant
+:MediterraneanRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Mexican_cuisine
+<http://dbpedia.org/resource/Mexican_cuisine> rdf:type owl:NamedIndividual ;
+                                              owl:sameAs :MexicanRestaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MexicanRestaurant
+:MexicanRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Monument
+<http://dbpedia.org/resource/Monument> rdf:type owl:NamedIndividual ;
+                                       owl:sameAs :Monument .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Monument
+:Monument rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Museum
+<http://dbpedia.org/resource/Museum> rdf:type owl:NamedIndividual ;
+                                     owl:sameAs :Museum .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Museum
+:Museum rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Málaga
+<http://dbpedia.org/resource/Málaga> rdf:type owl:NamedIndividual ;
+                                     owl:sameAs :Málaga .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Málaga
+
+###  http://dbpedia.org/resource/Pamplona
+<http://dbpedia.org/resource/Pamplona> rdf:type owl:NamedIndividual ;
+                                       owl:sameAs :Pamplona .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Pamplona
+
+###  http://dbpedia.org/resource/Park
+<http://dbpedia.org/resource/Park> rdf:type owl:NamedIndividual ;
+                                   owl:sameAs :Park .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Park
+:Park rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Public_transport
+<http://dbpedia.org/resource/Public_transport> rdf:type owl:NamedIndividual ;
+                                               owl:sameAs :Transport .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Transport
+:Transport rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Restaurant
+<http://dbpedia.org/resource/Restaurant> rdf:type owl:NamedIndividual ;
+                                         owl:sameAs :Restaurant .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Restaurant
+:Restaurant rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/San_Sebastián
+<http://dbpedia.org/resource/San_Sebastián> rdf:type owl:NamedIndividual ;
+                                            owl:sameAs :SanSebastián .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#SanSebastián
+
+###  http://dbpedia.org/resource/Seville
+<http://dbpedia.org/resource/Seville> rdf:type owl:NamedIndividual ;
+                                      owl:sameAs :Sevilla .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Sevilla
+
+###  http://dbpedia.org/resource/Taxicab
+<http://dbpedia.org/resource/Taxicab> rdf:type owl:NamedIndividual ;
+                                      owl:sameAs :Taxi .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Taxi
+:Taxi rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Tourist_attraction
+<http://dbpedia.org/resource/Tourist_attraction> rdf:type owl:NamedIndividual ;
+                                                 owl:sameAs :Attraction .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Attraction
+:Attraction rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Tram
+<http://dbpedia.org/resource/Tram> rdf:type owl:NamedIndividual ;
+                                   owl:sameAs :Tram .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Tram
+:Tram rdf:type owl:NamedIndividual .
+
+
+###  http://dbpedia.org/resource/Zaragoza
+<http://dbpedia.org/resource/Zaragoza> rdf:type owl:NamedIndividual ;
+                                       owl:sameAs :Zaragoza .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Zaragoza
+
+###  http://dbpedia.org/resource/Toledo,_Spain
+<http://dbpedia.org/resource/Toledo,_Spain> rdf:type owl:NamedIndividual ;
+                                            owl:sameAs :Toledo .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Toledo
+
+###  http://dbpedia.org/resource/Valencia,_Spain
+<http://dbpedia.org/resource/Valencia,_Spain> rdf:type owl:NamedIndividual ;
+                                              owl:sameAs :Valencia .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Valencia
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Attraction
+:Attraction rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Barcelona
+:Barcelona rdf:type owl:NamedIndividual ,
+                    :City ;
+           :cityName "Barcelona" ;
+           :location "41.3874,2.1686" ;
+           rdfs:label "Barcelona" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Beach
+:Beach rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#BiciPamplona
+:BiciPamplona rdf:type owl:NamedIndividual ,
+                       :Transport ;
+              :isLocatedIn :Pamplona ;
+              :averageCost 8.48 ;
+              :companyName "BiciPamplona" ;
+              :transportType "Public Bicycle" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Bilbao
+:Bilbao rdf:type owl:NamedIndividual ,
+                 :City ;
+        :cityName "Bilbao" ;
+        :location "43.2630,-2.9350" ;
+        rdfs:label "Bilbao" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Bus
+:Bus rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CarnavalBilbao
+:CarnavalBilbao rdf:type owl:NamedIndividual ,
+                         :Event ;
+                :isLocatedIn :Bilbao ;
+                :eventDate "2024-12-20"^^xsd:date ;
+                :eventName "CarnavalBilbao" ;
+                :eventType "Tech" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CarnavalSevilla
+:CarnavalSevilla rdf:type owl:NamedIndividual ,
+                          :Event ;
+                 :isLocatedIn :Sevilla ;
+                 :eventDate "2024-05-08"^^xsd:date ;
+                 :eventName "CarnavalSevilla" ;
+                 :eventType "Music" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CastilloBarcelona
+:CastilloBarcelona rdf:type owl:NamedIndividual ,
+                            :Attraction ;
+                   :isLocatedIn :Barcelona ;
+                   :attractionName "CastilloBarcelona" ;
+                   :attractionRating 4.5 ;
+                   :attractionType "Cultural" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CastilloPamplona
+:CastilloPamplona rdf:type owl:NamedIndividual ,
+                           :Attraction ;
+                  :isLocatedIn :Pamplona ;
+                  :attractionName "CastilloPamplona" ;
+                  :attractionRating 3.9 ;
+                  :attractionType "Beach" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CatedralZaragoza
+:CatedralZaragoza rdf:type owl:NamedIndividual ,
+                           :Attraction ;
+                  :isLocatedIn :Zaragoza ;
+                  :attractionName "CatedralZaragoza" ;
+                  :attractionRating 4.0 ;
+                  :attractionType "Monument" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#City
+:City rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CityZaragoza
+:CityZaragoza rdf:type owl:NamedIndividual ,
+                       :Transport ;
+              :isLocatedIn :Zaragoza ;
+              :averageCost 5.79 ;
+              :companyName "CityZaragoza" ;
+              :transportType "Bus" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#ConciertoValencia
+:ConciertoValencia rdf:type owl:NamedIndividual ,
+                            :Event ;
+                   :isLocatedIn :Valencia ;
+                   :eventDate "2024-02-07"^^xsd:date ;
+                   :eventName "ConciertoValencia" ;
+                   :eventType "Music" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CongresoBarcelona
+:CongresoBarcelona rdf:type owl:NamedIndividual ,
+                            :Event ;
+                   :isLocatedIn :Barcelona ;
+                   :eventDate "2024-06-28"^^xsd:date ;
+                   :eventName "CongresoBarcelona" ;
+                   :eventType "Food" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CongresoBilbao
+:CongresoBilbao rdf:type owl:NamedIndividual ,
+                         :Event ;
+                :isLocatedIn :Bilbao ;
+                :eventDate "2024-12-01"^^xsd:date ;
+                :eventName "CongresoBilbao" ;
+                :eventType "Cultural" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#CongresoCádiz
+:CongresoCádiz rdf:type owl:NamedIndividual ,
+                        :Event ;
+               :isLocatedIn :Cádiz ;
+               :eventDate "2024-06-02"^^xsd:date ;
+               :eventName "CongresoCádiz" ;
+               :eventType "Sport" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Cádiz
+:Cádiz rdf:type owl:NamedIndividual ,
+                :City ;
+       :cityName "Cádiz" ;
+       :location "36.5297,-6.2920" ;
+       rdfs:label "Cádiz" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Event
+:Event rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Hotel
+:Hotel rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#HotelDelMarValencia
+:HotelDelMarValencia rdf:type owl:NamedIndividual ,
+                              :Hotel ;
+                     :isLocatedIn :Valencia ;
+                     :hotelName "HotelDelMarValencia" ;
+                     :hotelRating 3.8 ;
+                     :hotelStars 3 ;
+                     :hotelType "Rural" ;
+                     :pricePerNight 139 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#HotelRoyalMálaga
+:HotelRoyalMálaga rdf:type owl:NamedIndividual ,
+                           :Hotel ;
+                  :isLocatedIn :Málaga ;
+                  :hotelName "HotelRoyalMálaga" ;
+                  :hotelRating 4.6 ;
+                  :hotelStars 5 ;
+                  :hotelType "Tourist" ;
+                  :pricePerNight 175 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#HotelRoyalPamplona
+:HotelRoyalPamplona rdf:type owl:NamedIndividual ,
+                             :Hotel ;
+                    :isLocatedIn :Pamplona ;
+                    :hotelName "HotelRoyalPamplona" ;
+                    :hotelRating 3.9 ;
+                    :hotelStars 3 ;
+                    :hotelType "Luxury" ;
+                    :pricePerNight 56 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#HotelRoyalSanSebastián
+:HotelRoyalSanSebastián rdf:type owl:NamedIndividual ,
+                                 :Hotel ;
+                        :isLocatedIn :SanSebastián ;
+                        :hotelName "HotelRoyalSanSebastián" ;
+                        :hotelRating 4.4 ;
+                        :hotelStars 5 ;
+                        :hotelType "Business" ;
+                        :pricePerNight 245 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#HotelVistaSevilla
+:HotelVistaSevilla rdf:type owl:NamedIndividual ,
+                            :Hotel ;
+                   :isLocatedIn :Sevilla ;
+                   :hotelName "HotelVistaSevilla" ;
+                   :hotelRating 4.7 ;
+                   :hotelStars 4 ;
+                   :hotelType "Beach" ;
+                   :pricePerNight 278 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#ItalianRestaurant
+:ItalianRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#JapaneseRestaurant
+:JapaneseRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Madrid
+:Madrid rdf:type owl:NamedIndividual ,
+                 :City ;
+        :cityName "Madrid" ;
+        :location "40.4168,-3.7038" ;
+        rdfs:label "Madrid" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MediterraneanRestaurant
+:MediterraneanRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MexicanRestaurant
+:MexicanRestaurant rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Monument
+:Monument rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MoviCádiz
+:MoviCádiz rdf:type owl:NamedIndividual ,
+                    :Transport ;
+           :isLocatedIn :Cádiz ;
+           :averageCost 4.63 ;
+           :companyName "MoviCádiz" ;
+           :transportType "Metro" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#MuseoMálaga
+:MuseoMálaga rdf:type owl:NamedIndividual ,
+                      :Attraction ;
+             :isLocatedIn :Málaga ;
+             :attractionName "MuseoMálaga" ;
+             :attractionRating 4.3 ;
+             :attractionType "Park" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Museum
+:Museum rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Málaga
+:Málaga rdf:type owl:NamedIndividual ,
+                 :City ;
+        :cityName "Málaga" ;
+        :location "36.7213,-4.4210" ;
+        rdfs:label "Málaga" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Pamplona
+:Pamplona rdf:type owl:NamedIndividual ,
+                   :City ;
+          :cityName "Pamplona" ;
+          :location "42.8169,-1.6444" ;
+          rdfs:label "Pamplona" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Park
+:Park rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#ParqueMadrid
+:ParqueMadrid rdf:type owl:NamedIndividual ,
+                       :Attraction ;
+              :isLocatedIn :Madrid ;
+              :attractionName "ParqueMadrid" ;
+              :attractionRating 3.8 ;
+              :attractionType "Cultural" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#PublicBicycle
+:PublicBicycle rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Restaurant
+:Restaurant rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#RestauranteDelicia
+:RestauranteDelicia rdf:type owl:NamedIndividual ,
+                             :Restaurant ;
+                    :isLocatedIn :SanSebastián ;
+                    :averagePrice 49 ;
+                    :cuisineType "Mediterranean" ;
+                    :restaurantName "RestauranteDelicia" ;
+                    :restaurantRating 3.5 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#RestauranteFusión
+:RestauranteFusión rdf:type owl:NamedIndividual ,
+                            :Restaurant ;
+                   :isLocatedIn :Valencia ;
+                   :averagePrice 4.2 ;
+                   :cuisineType "Andalusian" ;
+                   :restaurantName "RestauranteFusión" ;
+                   :restaurantRating 4.2 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#RestauranteGourmet
+:RestauranteGourmet rdf:type owl:NamedIndividual ,
+                             :Restaurant ;
+                    :isLocatedIn :Madrid ;
+                    :averagePrice 30 ;
+                    :cuisineType "Japanese" ;
+                    :restaurantName "RestauranteGourmet" ;
+                    :restaurantRating 4.8 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#RestauranteSabor
+:RestauranteSabor rdf:type owl:NamedIndividual ,
+                           :Restaurant ;
+                  :isLocatedIn :Sevilla ;
+                  :averagePrice 72 ;
+                  :cuisineType "Italian" ;
+                  :restaurantName "RestauranteSabor" ;
+                  :restaurantRating 4.1 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#RestauranteTradición
+:RestauranteTradición rdf:type owl:NamedIndividual ,
+                               :Restaurant ;
+                      :isLocatedIn :Toledo ;
+                      :averagePrice 46 ;
+                      :cuisineType "Mexican" ;
+                      :restaurantName "RestauranteTradición" ;
+                      :restaurantRating 3.7 .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#SanSebastián
+:SanSebastián rdf:type owl:NamedIndividual ,
+                       :City ;
+              :cityName "San Sebastián" ;
+              :location "43.3183,-1.9812" ;
+              rdfs:label "SanSebastián" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Sevilla
+:Sevilla rdf:type owl:NamedIndividual ,
+                  :City ;
+         :cityName "Sevilla" ;
+         :location "37.3886,-5.9823" ;
+         rdfs:label "Sevilla" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Taxi
+:Taxi rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Toledo
+:Toledo rdf:type owl:NamedIndividual ,
+                 :City ;
+        :cityName "Toledo" ;
+        :location "39.8628,-4.0273" ;
+        rdfs:label "Toledo" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Tram
+:Tram rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#TransBilbao
+:TransBilbao rdf:type owl:NamedIndividual ,
+                      :Transport ;
+             :isLocatedIn :Bilbao ;
+             :averageCost 5.75 ;
+             :companyName "TransBilbao" ;
+             :transportType "Tram" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#TransToledo
+:TransToledo rdf:type owl:NamedIndividual ,
+                      :Transport ;
+             :isLocatedIn :Toledo ;
+             :averageCost 3.61 ;
+             :companyName "TransToledo" ;
+             :transportType "Tram" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Transport
+:Transport rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#UrbanMadrid
+:UrbanMadrid rdf:type owl:NamedIndividual ,
+                      :Transport ;
+             :isLocatedIn :Madrid ;
+             :averageCost 8.85 ;
+             :companyName "UrbanMadrid" ;
+             :transportType "Metro" ;
+             rdfs:label "UrbanMadrid" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Valencia
+:Valencia rdf:type owl:NamedIndividual ,
+                   :City ;
+          :cityName "Valencia" ;
+          :location "39.4699,-0.3763" ;
+          rdfs:label "Valencia" .
+
+
+###  http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9#Zaragoza
+:Zaragoza rdf:type owl:NamedIndividual ,
+                   :City ;
+          :cityName "Zaragoza" ;
+          :location "41.6488,-0.8891" ;
+          rdfs:label "Zaragoza" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:Attraction rdfs:comment "A place or activity of interest that draws tourists, such as natural landscapes, cultural sites or recreational facilities." ;
+            rdfs:label "Attraction" .
+
+
+:Beach rdfs:comment "A natural coastal area offering sand, sea and sun, often visited for recreation and relaxation." ;
+       rdfs:label "Beach" .
+
+
+:Bus rdfs:comment "A large road vehicle designed to carry many passengers, typically operating on scheduled routes." ;
+     rdfs:label "Bus" .
+
+
+:City rdfs:comment "A populated urban area that serves as geographical and administrative unit, often hosting various touristic entities such as hotels, events and attractions." ;
+      rdfs:label "City" .
+
+
+:Event rdfs:comment "A scheduled public or private activity that gathers people for a specific purpose such as entertainment, culture, sports or business." ;
+       rdfs:label "Event" .
+
+
+:Hotel rdfs:comment "An establishment that provides lodging and related services to travelers and tourists, typically available for short-term stays." ;
+       rdfs:label "Hotel" .
+
+
+:ItalianRestaurant rdfs:comment "A restaurant serving Italian cuisine, typically featuring pasta, pizza, risotto and Mediterranean ingredients." ;
+                   rdfs:label "ItalianRestaurant" .
+
+
+:JapaneseRestaurant rdfs:comment "A restaurant that specializes in traditional and contemporary Japanese cuisine, such as sushi, ramen and tempura." ;
+                    rdfs:label "JapaneseRestaurant" .
+
+
+:MediterraneanRestaurant rdfs:comment "A restaurant offering dishes inspired by Mediterranean culinary traditions, emphasizing fresh vegetables, grains, olive oil and seafood." ;
+                         rdfs:label "MediterraneanRestaurant" .
+
+
+:MexicanRestaurant rdfs:comment "A restaurant offering traditional Mexican dishes including tacos, echiladas, burritos and regional specialties." ;
+                   rdfs:label "MexicanRestaurant" .
+
+
+:Monument rdfs:comment "A historically or culturally significant structure or site, often preserved for public interest or tourism." ;
+          rdfs:label "Monument" .
+
+
+:Museum rdfs:comment "An institution or building that collects, preserves and displays objects of artistic, cultural, historical or scientific importance." ;
+        rdfs:label "Museum" .
+
+
+:Park rdfs:comment "A public outdoor area offering green space, often with recreational facilities, for leisure and relaxation." ;
+      rdfs:label "Park" .
+
+
+:PublicBicycle rdfs:comment "A shared bicycle available to the public, usually provided by a city or private operator for short-distance urban travel." ;
+               rdfs:label "PublicBicycle" .
+
+
+:Restaurant rdfs:comment "A place where meals are prepared and served to customers, usually offering a dining area and a menu with various types of cuisine." ;
+            rdfs:label "Restaurant" .
+
+
+:Taxi rdfs:comment "A passenger vehicle for hire with a driver, typically providing point-to-point service within a city." ;
+      rdfs:label "Taxi" .
+
+
+:Tram rdfs:comment "A rail-based public transport system operating at street level, often powered by overhead electric lines." ;
+      rdfs:label "Tram" .
+
+
+:Transport rdfs:comment "A means or service used to move people within or between cities, including public and private transport options." ;
+           rdfs:label "Transport" .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/s> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S12" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :eventType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "music" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :MusicEvent ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S13" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :eventType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "sport" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :SportEvent ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S15" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :eventType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "tech" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :TechEvent ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S1" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Hotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hotelStars ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/s>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/s> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 4 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :LuxuryHotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S2" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Hotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hotelType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "beach" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :BeachHotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S4" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Hotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hotelType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "business" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :BusinessHotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S3" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Hotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hotelType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "rural" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :RuralHotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S5" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Hotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :hotelType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "touristic" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :TouristHotel ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/h>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S19" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Restaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :cuisineType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "andalusian" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :AndalusianRestaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S18" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Restaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :cuisineType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "italian" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :ItalianRestaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S17" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Restaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :cuisineType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "japanese" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :JapaneseRestaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S20" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Restaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :cuisineType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "mediterranean" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :MediterraneanRestaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S16" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Restaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :cuisineType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "mexican" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :MexicanRestaurant ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/r>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S25" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Transport ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :transportType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "bicycle" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :PublicBicycle ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S22" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Transport ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :transportType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "bus" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Bus ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S21" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Transport ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :transportType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "metro" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Metro ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S24" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Transport ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :transportType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "taxi" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Taxi ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S23" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Transport ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :transportType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/x> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "tram" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Tram ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S10" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attraction ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :attractionType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "beach" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Beach ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S9" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attraction ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :attractionType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "cultural" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Cultural ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S8" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attraction ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :attractionType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "monument" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Monument ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S6" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attraction ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :attractionType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "museum" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Museum ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S7" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attraction ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :attractionType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "park" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Park ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/a>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S11" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :eventType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "cultural" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :CulturalEvent ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "S14" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Event ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :eventType ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#containsIgnoreCase> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/t> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "food" ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :FoodEvent ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/cristi/ontologies/2025/3/untitled-ontology-9/e>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
